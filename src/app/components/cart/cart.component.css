@@ -1,0 +1,320 @@
+/* Contenedor principal */
+.cart-container {
+  font-family: "Archivo Black", serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;  /* Reducido el padding */
+  width: 100%;    /* Cambiado de 100vw a 100% */
+  min-height: 100vh;
+  background-color: rgba(255, 247, 232, 1);
+  position: relative;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  overflow-y: auto;
+  font-size: 1.5rem;
+}
+
+/* Contenedor de los productos */
+.TarjetaProducto {
+  display: grid;
+  gap: 30px;
+  width: calc(35% - 50px);  /* Ajustado el ancho */
+  margin-top: 60px;         /* Reducido el margen superior */
+  margin-right: auto;       /* Centrado automático */
+  margin-left: auto;        /* Centrado automático */
+}
+
+.dropdown-menu {
+  display: none;
+  position: absolute;
+  top: calc(100% + 5px);  /* Reducido el espacio entre el menú y la barra */
+  left: 0;                /* Alineado con el elemento padre */
+  transform: none;        /* Eliminado el transform que desplazaba el menú */
+  background-color: rgba(255, 247, 232, 1);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  list-style-type: none;
+  padding: 10px 0;
+  margin: 0;             /* Eliminado el margen */
+  z-index: 1000;
+  transition: opacity 0.3s ease;  /* Transición suave solo para la opacidad */
+  min-width: 150px;
+}
+
+.dropdown {
+  position: relative;    /* Asegura que el menú se posicione relativo a este elemento */
+  padding: 5px 0;       /* Añade un poco de espacio para hacer más fácil el hover */
+}
+
+.dropdown:hover .dropdown-menu {
+  display: block;
+  opacity: 1;
+}
+
+/* Añadir un área invisible que mantenga el hover activo */
+.dropdown::after {
+  content: '';
+  position: absolute;
+  height: 20px;
+  width: 100%;
+  bottom: -20px;
+  left: 0;
+}
+
+.empty-cart {
+  text-align: center;
+  padding: 40px;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  font-size: 1.2rem;
+  color: #4a5568;
+  width: 100%;
+  margin-top: 20px;
+}
+
+/* Tarjeta de cada producto */
+.cart-item {
+  position: relative;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: white;
+  transition: all 0.3s ease;
+  padding: 25px; /* Aumentado el padding */
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: flex-start;
+  width: 100%;
+  line-height: 1.2; /* Aumentado el line-height */
+}
+
+.cart-info {
+  margin-left: 30px; /* Aumentado el margen */
+  flex: 1;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.cart-item h3 {
+  font-size: 1.4rem;
+  font-weight: 700;
+  color: #2d3748;
+  margin-bottom: 10px;
+  margin-top: 10px;
+  line-height: 1.4; /* Añadido line-height específico */
+  justify-content: flex-start;
+  margin-right: 10px;
+  margin-left: 20px;
+}
+
+.cart-item img {
+  width: 170px;
+  height: 170px;
+  object-fit: cover;
+  border-radius: 12px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+
+
+.cart-item button {
+  min-width: 100px;
+  padding: 8px 15px;
+  font-size: 0.9rem;
+  margin: 0;
+}
+
+.cart-item button {
+  background-color: #e53e3e;
+  color: white;
+  padding: 8px 15px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 300;
+  transition: background-color 0.3s ease;
+  cursor: pointer;
+  width: auto;
+  margin-top: 10px;
+  margin-right: 10px;
+  margin-left: 70px;
+}
+
+.cart-item div:first-child {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+}
+
+.price {
+  font-size: 1rem;
+  color: #4a5568;
+  line-height: 1;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+.quantity {
+  font-size: 1rem;
+  color: #4a5568;
+  line-height: 1;
+  flex-direction: row;
+  justify-content: flex-start;
+  margin-left: 20px;
+}
+
+.cart-item:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 20px rgba(0, 0, 0, 0.15);
+}
+
+/* Botón eliminar */
+.cart-item button {
+  background-color: transparent;
+  color: #718096;
+  padding: 5px 10px;
+  border-radius: 50%;
+  border: none;
+  font-weight: 700;
+  transition: all 0.3s ease;
+  cursor: pointer;
+  width: 30px;
+  height: 30px;
+  min-width: unset;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+}
+
+/* También hay una definición duplicada de .cart-info que podemos eliminar */
+.cart-info {
+  margin-left: 30px;
+  flex: 1;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: flex-start;
+}
+
+.cart-item button:hover {
+  background-color: #f1f1f1;
+  color: #e53e3e;
+}
+
+/* Sección del total */
+.TarjetaTotal {
+  position: fixed;
+  top: 50%;
+  right: 50px;
+  background-color: white;
+  padding: 24px;
+  border-radius: 16px;
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+  width: 160px; /* Ajustado para mejor proporción */
+  border: 1px solid #f0f0f0;
+  transform: translateY(-50%);
+  height: auto;
+  align-items: center;
+  flex-direction: column;
+}
+
+.TarjetaTotal h3 {
+  font-size: 1rem;
+  margin-bottom: 5px;
+  color: #2d3748;
+  text-align: center;
+  line-height: 1.2; /* Ajustado para mejor legibilidad */
+}
+
+.TarjetaTotal button {
+  width: 100%;
+  padding: 8px;
+  font-size: 0.9rem;
+  background-color: #718096;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-weight: 300;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  margin-bottom: 2px;
+  text-align: center;
+  justify-content: center;
+}
+
+.TarjetaTotal .pay-button {
+  width: 100%;
+  background-color: #e53e3e;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+
+.TarjetaTotal .clear-button {
+  width: 100%;
+  background-color: #718096;
+}
+
+.TarjetaTotal .clear-button:hover {
+  background-color: #4a5568;
+}
+.TarjetaTotal button:hover {
+  background-color: #c53030;
+}
+
+.pay-button button:hover {
+  background-color: #c53030;
+}
+
+
+.delete-button {
+  position: absolute;
+  top: 10px; /* Ajustado para que esté más arriba */
+  right: 10px; /* Ajustado para que esté más a la derecha */
+  background-color: #e53e3e;
+  color: white;
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: none;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  z-index: 1; /* Asegura que esté por encima de otros elementos */
+}
+
+.delete-button:hover {
+  background-color: #c53030;
+  transform: scale(1.1);
+}
+
+.back-button {
+  position: fixed;
+  top: 30px;
+  left: 30px;
+  background-color: white;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: all 0.3s ease;
+  cursor: pointer;
+  color: #2d3748;
+  text-decoration: none;
+}
+
+.back-button:hover {
+  transform: translateX(-5px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+}

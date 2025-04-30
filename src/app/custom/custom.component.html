@@ -1,0 +1,60 @@
+<div class="custom-container">
+  <a href="/" class="back-button"></a>
+  ← Volver
+
+  <h1>Customize Your Design</h1>
+
+  <div class="custom-grid">
+    <!--Cuadro izq-->
+    <div class="product-selection">
+      <h2>Select Product</h2>
+      <div class="carousel-container">
+        <button class="carousel-arrow left" (click)="scrollCarousel('left')">
+          ←
+        </button>
+        <div class="carousel" #carouselContainer>
+          <img
+            *ngFor="let image of images"
+            [src]="image.thumb"
+            (click)="selectImage(image)"
+            alt="miniatura"
+          />
+        </div>
+        <button class="carousel-arrow right" (click)="scrollCarousel('right')">
+          →
+        </button>
+      </div>
+
+      <!--Botones de producto-->
+      <div class="product-options">
+        <button class="product-option" (click)="selectProduct('tshirt')">
+          <p>T-Shirt</p>
+        </button>
+        <button class="product-option" (click)="selectProduct('bag')">
+          <p>Tote Bag</p>
+        </button>
+      </div>
+    </div>
+
+    <!--Cuadro derecho-->
+    <div class="design-preview">
+      <h2>Preview</h2>
+      <div class="preview-canvas">
+        <div class="preview-wrapper">
+          <img
+            *ngIf="selectedProduct"
+            [src]="selectedProduct.image"
+            [alt]="selectedProduct.name"
+            class="product-preview"
+          />
+          <img
+            *ngIf="selectedImage"
+            [src]="selectedImage.full"
+            class="design-overlay"
+            alt="Selected design"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

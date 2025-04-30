@@ -1,0 +1,43 @@
+<div class="cart-container">
+  <a [routerLink]="['/']" class="back-button">
+    <i class="fas fa-arrow-left"></i> Volver
+  </a>
+  <h2>Carrito de Compras</h2>
+
+  <div class="TarjetaProducto">
+    <div *ngIf="cartItems().length === 0" class="empty-cart">
+      <p>Tu carrito está vacío</p>
+      <a [routerLink]="['/']">Continuar comprando</a>
+    </div>
+
+    <div *ngFor="let item of cartItems()" class="cart-item">
+      <div class="item-header">
+        <h3>{{ item.name }}</h3>
+        <button class="delete-button" (click)="removeItem(item.id)" aria-label="Eliminar item">×</button>
+      </div>
+      <div class="item-content">
+        <img [src]="item.image" [alt]="item.name" />
+        <div class="cart-info">
+          <p class="price">{{ item.price | currency }}</p>
+          <div class="quantity-controls">
+            <button (click)="decreaseQuantity(item)" [disabled]="item.quantity <= 1">-</button>
+            <span class="quantity">{{ item.quantity }}</span>
+            <button (click)="increaseQuantity(item)">+</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="TarjetaTotal" *ngIf="cartItems().length > 0">
+    <h3>Resumen de compra</h3>
+    <div class="summary">
+      <p>Total Items: {{ getTotalItems() }}</p>
+      <p>Total: {{ totalPrice() | currency }}</p>
+    </div>
+    <div class="cart-actions">
+      <button (click)="checkOut()" class="pay-button">Proceder al pago</button>
+      <button (click)="clearCart()" class="clear-button">Vaciar Carrito</button>
+    </div>
+  </div>
+</div>

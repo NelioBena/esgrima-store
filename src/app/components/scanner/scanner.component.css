@@ -1,0 +1,71 @@
+/* 🔹 Capa de escaneo con efecto CRT */
+.scanner-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100vh;
+  pointer-events: none;
+  mix-blend-mode: overlay;
+}
+
+/* 🔹 Líneas de escaneo más grandes */
+.scanlines {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0.06) 0px,
+    rgba(255, 255, 255, 0.04) 6px,
+    transparent 12px
+  );
+  animation: flicker 0.2s infinite alternate;
+}
+
+/* 🔹 Línea del escáner */
+.scanner {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 20px;
+  background: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 25px rgba(255, 255, 255, 0.5);
+  animation: scan 4s linear infinite, flicker 0.1s infinite alternate;
+}
+
+/* 🔹 Animación del escaneo */
+@keyframes scan {
+  0% {
+    top: 0;
+  }
+  100% {
+    top: 100%;
+  }
+}
+
+/* 🔹 Efecto de parpadeo */
+@keyframes flicker {
+  0% {
+    opacity: 1;
+  }
+  100% {
+    opacity: 0.9;
+  }
+}
+
+/* 🔹 EFECTO GLITCH EN IMÁGENES CUANDO PASA EL ESCÁNER */
+img {
+  transition: transform 0.2s ease, filter 0.2s ease;
+}
+
+/* Aplicamos el efecto solo cuando el escáner está sobre ellas */
+.scanner-overlay + * img {
+  position: relative;
+}
+
+.scanner-overlay + * img.scanned {
+  filter: blur(2px) brightness(1.5) hue-rotate(20deg);
+  transform: translateX(50px);
+}

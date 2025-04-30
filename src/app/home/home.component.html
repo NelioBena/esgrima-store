@@ -1,0 +1,99 @@
+<!--headerEsgrima-->
+<header class="header">
+  <nav class="navbar">
+    <ul class="navbar-menu">
+      <li class="navbar-item dropdown" (click)="toggleMenu()">
+        <a class="dropdown-toggle">Menu</a>
+        <ul class="dropdown-menu" [class.show]="menuOpen">
+          <li><a routerLink="/custom">Custom</a></li>
+          <li><a [routerLink]="['/lookbook']">Lookbook</a></li>
+          <li><a [routerLink]="['/about']">About</a></li>
+          <li><a [routerLink]="['/contact']">Contact</a></li>
+        </ul>
+      </li>
+    </ul>
+  </nav>
+  <div class="header-content">
+    <h1>Sassy ✰ Slang ✰ Stuff</h1>
+  </div>
+  <a [routerLink]="['/cart']"
+    >🛒 Carrito ({{ cartService.cartItems().length }})</a
+  >
+</header>
+
+<main>
+  <!--bannerEsgrima-->
+  <div class="banner">
+    <img src="assets/Imagenes/Banner/portada.png" alt="Banner Esgrima" />
+    <div class="banner-text">
+      <p>ESGRIMA</p>
+    </div>
+  </div>
+
+  <div class="catalog-txt">
+    <h2>NEW SASSY STUFF</h2>
+  </div>
+
+  <section class="catalog">
+    <div *ngFor="let product of products" class="product-card">
+      <img [src]="product.image" [alt]="product.name" />
+      <h3>{{ product.name }}</h3>
+      <p>{{ product.price | currency }}</p>
+      <button (click)="addToCart(product)">Agregar al Carrito</button>
+    </div>
+  </section>
+
+  <!--bannerWWD-->
+  <div class="BannerWWD">
+    <p>WHAT WE DO</p>
+  </div>
+
+  <!--WWD-->
+  <section class="WWD">
+    <div class="WWDimg">
+      <img src="assets/Imagenes/WWD/boys.png" alt="boys" />
+    </div>
+
+    <section class="WWDtext">
+      <p>
+        Las estampas de Esgrima tienen la escencia de la libertad de la
+        revolucion gay de los 70s los latiguillos picantes que coleccionamos a
+        travez de las generaciones y la creatividad de quienes gestamos Tumblr
+      </p>
+    </section>
+  </section>
+
+  <!--bannerDisenio-->
+  <section class="disenio">
+    <div class="txt1">
+      <p>
+        Cuando el código llega al receptor es porque más que un código, es un
+        lenguaje.
+      </p>
+    </div>
+    <div class="estampas">
+      <div class="scanner-wrapper">
+        <app-scanner></app-scanner>
+      </div>
+      <!-- PRIMER CONJUNTO: REMERA BLANCA -->
+      <img src="assets/Imagenes/disenio/edging copy.png" class="estampas1" />
+      <img src="assets/Imagenes/disenio/white1.png" class="remeraW1" />
+
+      <!-- SEGUNDO CONJUNTO: BOLSA -->
+      <img src="assets/Imagenes/Estampas/Wsea.png" class="estampas2" />
+      <img src="assets/Imagenes/disenio/bag1.png" class="bag1" />
+
+      <!-- TERCER CONJUNTO: REMERA NEGRA -->
+      <img src="assets/Imagenes/Estampas/submit copy 2.png" class="estampas3" />
+      <img src="assets/Imagenes/disenio/black1.png" class="remeraB1" />
+
+      <!-- CUARTO CONJUNTO: REMERA NEGRA -->
+      <img src="assets/Imagenes/Estampas/Rodeo copy.png" class="Rodeo" />
+      <img src="assets/Imagenes/disenio/bag2.png" class="bag2" />
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2025 Esgrima. Todos los derechos reservados</p>
+</footer>
